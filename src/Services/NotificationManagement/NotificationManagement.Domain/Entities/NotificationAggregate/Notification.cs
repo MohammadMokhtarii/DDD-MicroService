@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using NotificationManagement.Domain.Contracts;
+using NotificationManagement.Domain.Entities.ReceiverAggregate;
 using NotificationManagement.Domain.Events;
 using NotificationManagement.Domain.Exceptions;
 
@@ -12,6 +13,7 @@ public class Notification : Entity, IAggregateRoot
     public string Message { get; private set; }
 
     private int _retryCount;
+    private bool _read;
 
     private List<NotificationAcitvity> _notificationAcitvities;
     public IEnumerable<NotificationAcitvity> NotificationAcitvities => _notificationAcitvities.AsReadOnly();
@@ -25,6 +27,8 @@ public class Notification : Entity, IAggregateRoot
     private int _notificationStatusId;
     public NotificationStatus NotificationStatus { get; private set; }
 
+    private int? _receiverInfoId;
+    public ReceiverInfo ReceiverInfo { get; private set; }
 
     public Notification(string receiver, string message, int notificationTypeId)
     {
@@ -54,5 +58,15 @@ public class Notification : Entity, IAggregateRoot
         _notificationStatusId = notificationStatusId;
         _retryCount++;
         _notificationAcitvities.Add(new(Id, _notificationStatusId, response));
+    }
+
+    public void MarkRead()
+    {
+        if (_notificationStatusId != NotificationStatus.Successful.Id)
+            throw new NotificationDomainException("Invalid status for marking read flag");
+
+        _read = true;
+
+        AddDomainEvent(new NotificationReadDomainEvent(Id));
     }
 }

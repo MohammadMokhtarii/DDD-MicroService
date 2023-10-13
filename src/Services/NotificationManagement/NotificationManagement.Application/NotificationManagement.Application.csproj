@@ -9,7 +9,7 @@
 		<PackageReference Include="FluentValidation" />
 		<PackageReference Include="MediatR" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-		<PackageReference Include="FluentValidation.DependencyInjectionExtensions"  />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
 
 	</ItemGroup>
 
@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Queries\" />
+		<Folder Include="Queries\Notifications\" />
 	</ItemGroup>
 
 </Project>

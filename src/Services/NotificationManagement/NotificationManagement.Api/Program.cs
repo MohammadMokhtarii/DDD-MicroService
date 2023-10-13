@@ -1,15 +1,26 @@
+using NotificationManagement.Application;
+using NotificationManagement.Infrastructure;
+using Services.Common;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+#region Services
+builder.AddServiceDefaults();
 builder.Services.AddControllers();
 
-var app = builder.Build();
+builder.Services.AddApplicationServices()
+                .AddInfrastructureServices(builder.Configuration);
 
-// Configure the HTTP request pipeline.
+#endregion
+
+#region App
+var app = builder.Build();
+app.UseServiceDefaults();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
+
+#endregion

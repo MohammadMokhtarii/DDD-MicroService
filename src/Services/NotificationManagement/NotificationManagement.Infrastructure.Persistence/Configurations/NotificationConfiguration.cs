@@ -32,10 +32,21 @@ internal class NotificationConfiguration : IEntityTypeConfiguration<Notification
                      .HasColumnName("RetryCount")
                      .IsRequired();
 
+        configuration.Property<bool>("_read")
+                     .UsePropertyAccessMode(PropertyAccessMode.Field)
+                     .HasColumnName("Read")
+                     .IsRequired();
+
         configuration.Property<int>("_notificationTypeId")
                      .UsePropertyAccessMode(PropertyAccessMode.Field)
                      .HasColumnName("NotificationTypeId")
                      .IsRequired();
+
+        configuration.Property<int>("_receiverInfoId")
+                     .UsePropertyAccessMode(PropertyAccessMode.Field)
+                     .HasColumnName("ReceiverInfoId")
+                     .IsRequired();
+
 
         configuration.Property<int>("_notificationPriorityId")
                      .UsePropertyAccessMode(PropertyAccessMode.Field)

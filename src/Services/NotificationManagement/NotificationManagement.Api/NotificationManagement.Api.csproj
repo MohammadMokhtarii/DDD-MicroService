@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,6 +7,12 @@
     <DockerfileContext>..\..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Services.Common\Services.Common.csproj" />
+    <ProjectReference Include="..\NotificationManagement.Application\NotificationManagement.Application.csproj" />
+    <ProjectReference Include="..\NotificationManagement.Infrastructure.Persistence\NotificationManagement.Infrastructure.csproj" />
+  </ItemGroup>
 
 
 
