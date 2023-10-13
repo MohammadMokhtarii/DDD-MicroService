@@ -18,6 +18,9 @@ public class NotificationRepository : INotificationRepository
     public Notification Add(Notification notification)
         => _context.Notifications.Add(notification).Entity;
 
+    public void AddRange(IEnumerable<Notification> notifications)
+        => _context.Notifications.AddRange(notifications);
+
     public void Update(Notification notification)
         => _context.Entry(notification).State = EntityState.Modified;
 

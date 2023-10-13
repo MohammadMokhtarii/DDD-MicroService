@@ -1,7 +1,6 @@
 namespace NotificationManagement.Application.Adapters;
-public interface ISMSAdapter
+public interface ISmsAdapter
 {
-
-    Task SendAsync(string receiver, string message);
-    Task SendBulkAsync(string[] receiver, string message);
+    Task<string> SendAsync(string receiver, string message);
+    Task<string> SendBulkAsync(string[] receiver, string message);
 }

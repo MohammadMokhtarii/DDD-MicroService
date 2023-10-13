@@ -25,9 +25,27 @@ public class Notification : Entity, IAggregateRoot
     private int _notificationStatusId;
     public NotificationStatus NotificationStatus { get; private set; }
 
+
+    public Notification(string receiver, string message, int notificationTypeId)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(receiver, nameof(receiver));
+        ArgumentException.ThrowIfNullOrEmpty(message, nameof(message));
+
+        Receiver = receiver;
+        Message = message;
+        _notificationTypeId = notificationTypeId;
+        _notificationStatusId = NotificationStatus.Pending.Id;
+        _notificationPriorityId = NotificationPriority.High.Id;
+
+    }
+    public Notification(string receiver, string message, int notificationTypeId, int notificationPriorityId) : this(receiver, message, notificationTypeId)
+    {
+        _notificationPriorityId = notificationPriorityId;
+    }
     public void ChangeStatus(int notificationStatusId, string response)
     {
         ArgumentException.ThrowIfNullOrEmpty(response, nameof(response));
+
         if (_notificationStatusId == NotificationStatus.Successful.Id)
             throw new NotificationDomainException("Already Successed");
 

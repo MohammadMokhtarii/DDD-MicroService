@@ -4,14 +4,14 @@
 using NotificationManagement.Application.Adapters;
 
 namespace NotificationManagement.Infrastructure.Adapters;
-public class SMSAdapter : ISMSAdapter
+public class SmsAdapter : ISmsAdapter
 {
-    public Task SendAsync(string receiver, string message)
+    public Task<string> SendAsync(string receiver, string message)
     {
         throw new NotImplementedException();
     }
 
-    public Task SendBulkAsync(string[] receiver, string message)
+    public Task<string> SendBulkAsync(string[] receiver, string message)
     {
         throw new NotImplementedException();
     }

@@ -7,6 +7,7 @@ namespace NotificationManagement.Domain.Entities.NotificationAggregate;
 public interface INotificationRepository : IRepository<Notification>
 {
     Notification Add(Notification notification);
+    void AddRange(IEnumerable<Notification> notifications);
     void Update(Notification notification);
     Task<Notification> GetAsync(int id, CancellationToken cancellationToken = default);
 }

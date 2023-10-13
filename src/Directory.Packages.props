@@ -6,11 +6,12 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <PackageVersion Include="FluentValidation" Version="11.7.1" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2"  />
     <PackageVersion Include="MediatR" Version="12.1.1" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.12" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
-    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
   </ItemGroup>
 </Project>

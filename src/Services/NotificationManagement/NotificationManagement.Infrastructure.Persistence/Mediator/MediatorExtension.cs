@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NotificationManagement.Domain.Contracts;
 
-namespace NotificationManagement.Infrastructure.Persistence.Extentions;
+namespace NotificationManagement.Infrastructure.Mediator;
 static class MediatorExtension
 {
     public static async Task DispatchDomainEventsAsync(this IMediator mediator, DbContext ctx)

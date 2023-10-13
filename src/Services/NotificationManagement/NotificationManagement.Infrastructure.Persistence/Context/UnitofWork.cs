@@ -4,7 +4,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NotificationManagement.Domain.Contracts;
-using NotificationManagement.Infrastructure.Persistence.Extentions;
+using NotificationManagement.Infrastructure.Mediator;
 
 namespace NotificationManagement.Infrastructure.Persistence.Context;
 public partial class UnitofWork : IUnitofWork
