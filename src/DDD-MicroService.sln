@@ -22,13 +22,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationManagement.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationManagement.Application", "Services\NotificationManagement\NotificationManagement.Application\NotificationManagement.Application.csproj", "{E0B6F9B8-6565-4A91-9123-336DEFC43F9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationManagement.Api", "Services\NotificationManagement\NotificationManagement.Api\NotificationManagement.Api.csproj", "{5F532B30-88D9-4A15-BA82-1FF656C2611F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationManagement.Api", "Services\NotificationManagement\NotificationManagement.Api\NotificationManagement.Api.csproj", "{5F532B30-88D9-4A15-BA82-1FF656C2611F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0A9C3E20-FDCF-4F34-8105-01CFE91EA899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Common", "Services\Common\Services.Common\Services.Common.csproj", "{65972AB4-1AF9-4A8F-BC6A-48B024D97A1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Common", "Services\Common\Services.Common\Services.Common.csproj", "{65972AB4-1AF9-4A8F-BC6A-48B024D97A1A}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1B5D7036-2EB9-4C0A-90AA-8F01ADDAC276}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Gateway", "Web.Gateway", "{C4995048-4925-4940-8010-D1EABEE15EA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Gateway.Api", "Gateways\Web.Gateway\Web.Gateway.Api\Web.Gateway.Api.csproj", "{3DE9769A-6DA1-4470-B93F-634A31BF14D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +64,10 @@ Global
 		{1B5D7036-2EB9-4C0A-90AA-8F01ADDAC276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B5D7036-2EB9-4C0A-90AA-8F01ADDAC276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B5D7036-2EB9-4C0A-90AA-8F01ADDAC276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE9769A-6DA1-4470-B93F-634A31BF14D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE9769A-6DA1-4470-B93F-634A31BF14D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE9769A-6DA1-4470-B93F-634A31BF14D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE9769A-6DA1-4470-B93F-634A31BF14D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +80,8 @@ Global
 		{5F532B30-88D9-4A15-BA82-1FF656C2611F} = {205E14B4-6EBB-4344-A42D-4728F788D248}
 		{0A9C3E20-FDCF-4F34-8105-01CFE91EA899} = {BE934A96-8E21-42EF-BD2F-DB8DF09A67C5}
 		{65972AB4-1AF9-4A8F-BC6A-48B024D97A1A} = {0A9C3E20-FDCF-4F34-8105-01CFE91EA899}
+		{C4995048-4925-4940-8010-D1EABEE15EA0} = {73D7F2FB-F9E3-4925-B961-A794260FD7D7}
+		{3DE9769A-6DA1-4470-B93F-634A31BF14D1} = {C4995048-4925-4940-8010-D1EABEE15EA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42DFD161-4761-49D9-8D2D-A0282C346C64}
