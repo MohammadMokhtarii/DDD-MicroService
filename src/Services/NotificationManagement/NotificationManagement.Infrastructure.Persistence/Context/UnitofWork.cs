@@ -4,8 +4,11 @@
 using MediatR;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Infrastructure.Mediator;
+using Services.Common;
 
 namespace NotificationManagement.Infrastructure.Persistence.Context;
+
+[ScopedInjection]
 public partial class UnitofWork : IUnitofWork
 {
     private readonly ApplicationDbContext _dbContext;

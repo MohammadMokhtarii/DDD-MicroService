@@ -14,16 +14,13 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Common\Services.Common\Services.Common.csproj" />
 		<ProjectReference Include="..\NotificationManagement.Application\NotificationManagement.Application.csproj" />
 		<ProjectReference Include="..\NotificationManagement.Domain\NotificationManagement.Domain.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Extentions\" />
 	</ItemGroup>
 
 </Project>

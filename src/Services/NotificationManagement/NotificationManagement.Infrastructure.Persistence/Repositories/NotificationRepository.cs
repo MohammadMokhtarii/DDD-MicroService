@@ -4,8 +4,11 @@
 using Microsoft.EntityFrameworkCore;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
 using NotificationManagement.Infrastructure.Persistence.Context;
+using Services.Common;
 
 namespace NotificationManagement.Infrastructure.Persistence.Repositories;
+
+[ScopedInjection]
 public class NotificationRepository : INotificationRepository
 {
     private readonly ApplicationDbContext _context;
