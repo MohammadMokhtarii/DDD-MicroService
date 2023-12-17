@@ -51,8 +51,6 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 
                     transactionId = transaction.TransactionId;
                 }
-
-                //await _orderingIntegrationEventService.PublishEventsThroughEventBusAsync(transactionId);
             });
 
             return response;
