@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NotificationManagement.Api.Core;
 using NotificationManagement.Application.Commands;
-using NotificationManagement.Application.Commands.Notifications;
 
 namespace NotificationManagement.Api.Controllers;
 
