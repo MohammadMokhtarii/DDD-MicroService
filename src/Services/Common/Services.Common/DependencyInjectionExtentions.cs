@@ -6,7 +6,13 @@ namespace Service.Common.Presentation;
 
 public static class DependencyInjectionExtentions
 {
-    public static void RegisterSingletonServices(this IServiceCollection services, params Assembly[] assemblies)
+    public static void RegisterServices(this IServiceCollection services, params Assembly[] assemblies)
+    {
+        services.RegisterSingletonServices(assemblies);
+        services.RegisterScopedServices(assemblies);
+        services.RegisterTransientServices(assemblies);
+    }
+    private static void RegisterSingletonServices(this IServiceCollection services, params Assembly[] assemblies)
     {
         foreach (var assembly in assemblies)
         {
@@ -32,7 +38,7 @@ public static class DependencyInjectionExtentions
             }
         }
     }
-    public static void RegisterScopedServices(this IServiceCollection services, params Assembly[] assemblies)
+    private static void RegisterScopedServices(this IServiceCollection services, params Assembly[] assemblies)
     {
         foreach (var assembly in assemblies)
         {
@@ -58,7 +64,7 @@ public static class DependencyInjectionExtentions
             }
         }
     }
-    public static void RegisterTransientServices(this IServiceCollection services, params Assembly[] assemblies)
+    private static void RegisterTransientServices(this IServiceCollection services, params Assembly[] assemblies)
     {
         foreach (var assembly in assemblies)
         {
