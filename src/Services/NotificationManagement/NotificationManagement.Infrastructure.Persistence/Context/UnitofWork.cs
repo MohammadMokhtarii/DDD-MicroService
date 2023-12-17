@@ -9,9 +9,9 @@ using NotificationManagement.Infrastructure.Mediator;
 namespace NotificationManagement.Infrastructure.Persistence.Context;
 public partial class UnitofWork : IUnitofWork
 {
-    private readonly DbContext _dbContext;
+    private readonly NotificationManagementContext _dbContext;
     private readonly IMediator _mediator;
-    public UnitofWork(DbContext dbContext, IMediator mediator)
+    public UnitofWork(NotificationManagementContext dbContext, IMediator mediator)
     {
         _dbContext = dbContext;
         _mediator = mediator;

@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using NotificationManagement.Domain.Contracts;
-using NotificationManagement.Domain.Entities.ReceiverAggregate;
 using NotificationManagement.Domain.Events;
 using NotificationManagement.Domain.Exceptions;
 
@@ -26,9 +25,6 @@ public class Notification : Entity, IAggregateRoot
 
     private int _notificationStatusId;
     public NotificationStatus NotificationStatus { get; private set; }
-
-    private int? _receiverInfoId;
-    public ReceiverInfo ReceiverInfo { get; private set; }
 
     public Notification(string receiver, string message, int notificationTypeId)
     {

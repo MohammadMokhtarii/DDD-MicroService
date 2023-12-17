@@ -42,12 +42,6 @@ internal class NotificationConfiguration : IEntityTypeConfiguration<Notification
                      .HasColumnName("NotificationTypeId")
                      .IsRequired();
 
-        configuration.Property<int>("_receiverInfoId")
-                     .UsePropertyAccessMode(PropertyAccessMode.Field)
-                     .HasColumnName("ReceiverInfoId")
-                     .IsRequired();
-
-
         configuration.Property<int>("_notificationPriorityId")
                      .UsePropertyAccessMode(PropertyAccessMode.Field)
                      .HasColumnName("NotificationPriorityId")

@@ -9,18 +9,14 @@ public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TReque
 {
     private readonly ILogger<TransactionBehavior<TRequest, TResponse>> _logger;
     private readonly NotificationManagementContext _dbContext;
-    //private readonly IOrderingIntegrationEventService _orderingIntegrationEventService;
 
     public TransactionBehavior(NotificationManagementContext dbContext,
-        //IOrderingIntegrationEventService orderingIntegrationEventService,
         ILogger<TransactionBehavior<TRequest, TResponse>> logger)
     {
         ArgumentException.ThrowIfNullOrEmpty(nameof(NotificationManagementContext));
-        //ArgumentException.ThrowIfNullOrEmpty(nameof(orderingIntegrationEventService));
         ArgumentException.ThrowIfNullOrEmpty(nameof(ILogger));
 
         _dbContext = dbContext;
-        //_orderingIntegrationEventService = orderingIntegrationEventService;
         _logger = logger;
     }
 

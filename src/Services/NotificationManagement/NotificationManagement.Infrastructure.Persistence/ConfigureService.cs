@@ -23,7 +23,7 @@ public static class ConfigureService
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<IUnitofWork, UnitofWork>();
 
-        var dbConnectionString = configuration.GetRequiredConnectionString("NotificationManagement");
+        var dbConnectionString = configuration.GetRequiredConnectionString("Application");
         services.AddDbContext<NotificationManagementContext>((IServiceProvider serviceProvider, DbContextOptionsBuilder options) =>
         {
             options.UseSqlServer(dbConnectionString, sqlOptions =>

@@ -1,14 +1,23 @@
 version: '3.4'
 
 services:
-  notification-api:
-    container_name: notification-api
-    image: ${REGISTRY:-DDD-MicroService-}notification-api:${PLATFORM:-linux}-${TAG:-latest}
+  ddd.notification.api:
+    container_name: ddd-notification-api
+    image: ${REGISTRY:-ddd-}notification-api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
       dockerfile: Services/NotificationManagement/NotificationManagement.Api/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:49301
+      - ASPNETCORE_URLS=http://+:48301
     ports:
-      - "49301:49301"
+      - "48301:48301"
+
+  ddd.seq:
+    container_name: ddd-seq
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5341
+      - 8081:80

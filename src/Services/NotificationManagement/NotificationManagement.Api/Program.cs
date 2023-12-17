@@ -15,9 +15,8 @@ builder.Services.AddApplicationServices()
 
 #region App
 var app = builder.Build();
-app.UseServiceDefaults();
 
-app.UseAuthorization();
+app.UseServiceDefaults();
 
 app.MapControllers();
 

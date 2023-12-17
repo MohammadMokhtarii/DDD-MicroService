@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Services.Common;
 public static class CommonExtensions
@@ -13,6 +14,8 @@ public static class CommonExtensions
 
     public static WebApplicationBuilder AddServiceDefaults(this WebApplicationBuilder builder)
     {
+        builder.AddSerilog();
+
         builder.Services.AddDefaultHealthChecks(builder.Configuration);
         builder.Services.AddHttpContextAccessor();
 
@@ -36,20 +39,27 @@ public static class CommonExtensions
     }
 
 
+    public static WebApplicationBuilder AddSerilog(this WebApplicationBuilder builder)
+    {
+        var serilog = builder.Configuration.GetSection("Serilog");
+        if (serilog.Exists())
+            builder.Host.UseSerilog((context, logger) => logger.ReadFrom.Configuration(context.Configuration));
+
+        return builder;
+    }
     public static IHealthChecksBuilder AddDefaultHealthChecks(this IServiceCollection services, IConfiguration configuration)
     {
         var hcBuilder = services.AddHealthChecks();
 
         hcBuilder.AddCheck("self", () => HealthCheckResult.Healthy());
 
-        var eventBusSection = configuration.GetSection("EventBus");
+        var eventBus = configuration.GetRequiredConnectionString("EventBus");
 
-        if (!eventBusSection.Exists())
-        {
+        if (string.IsNullOrEmpty(eventBus))
             return hcBuilder;
-        }
 
-        hcBuilder.AddRabbitMQ(_ => $"amqp://{configuration.GetRequiredConnectionString("EventBus")}", name: "rabbitmq", tags: new string[] { "ready" });
+
+        hcBuilder.AddRabbitMQ(eventBus, name: "eventbus", tags: new string[] { "ready" });
 
         return hcBuilder;
     }

@@ -1,8 +1,2 @@
 version: '3.4'
 
-services:
-  notificationmanagement.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"

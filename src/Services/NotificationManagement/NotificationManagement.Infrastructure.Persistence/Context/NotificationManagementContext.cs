@@ -25,11 +25,7 @@ public class NotificationManagementContext : DbContext
     public NotificationManagementContext(DbContextOptions<NotificationManagementContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new NotificationConfiguration());
-        modelBuilder.ApplyConfiguration(new NotificationAcitvityConfiguration());
-        modelBuilder.ApplyConfiguration(new NotificationPriorityConfiguration());
-        modelBuilder.ApplyConfiguration(new NotificationStatusConfiguration());
-        modelBuilder.ApplyConfiguration(new NotificationTypeConfiguration());
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationManagementContext).Assembly);
     }
 
 
