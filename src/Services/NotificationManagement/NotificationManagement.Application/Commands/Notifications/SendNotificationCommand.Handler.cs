@@ -2,10 +2,11 @@
 using NotificationManagement.Application.Adapters;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
+using Services.Common;
 
 namespace NotificationManagement.Application.Commands.Notifications;
 
-public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCommand, bool>
+public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCommand, IActionResponse<string>>
 {
     private readonly IUnitofWork _uow;
     private readonly ISmsAdapter _smsAdapter;
@@ -15,7 +16,7 @@ public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCo
         _smsAdapter = smsAdapter;
     }
 
-    public async Task<bool> Handle(SendNotificationCommand request, CancellationToken cancellationToken)
+    public async Task<IActionResponse<string>> Handle(SendNotificationCommand request, CancellationToken cancellationToken)
     {
         Notification notification = new(request.Receiver, request.Message, request.NotificationTypeId);
 
@@ -25,6 +26,10 @@ public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCo
         if (!string.IsNullOrEmpty(smsResult))
             notification.ChangeStatus(NotificationStatus.Successful.Id, smsResult);
 
-        return await _uow.SaveChangesAsync(cancellationToken);
+        var dbResult = await _uow.SaveChangesAsync(cancellationToken);
+        if (!dbResult)
+            return ActionResponse<string>.Fail(ActionResponseStatusCode.ServerError, "");
+
+        return ActionResponse<string>.Success("");
     }
 }

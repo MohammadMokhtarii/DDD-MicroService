@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus\EventBus.csproj" />
+		<ProjectReference Include="..\..\Common\Services.Common\Services.Common.csproj" />
 		<ProjectReference Include="..\NotificationManagement.Domain\NotificationManagement.Domain.csproj" />
 	</ItemGroup>
 

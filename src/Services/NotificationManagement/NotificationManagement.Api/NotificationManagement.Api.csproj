@@ -15,12 +15,9 @@
 		</PackageReference>
 	</ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Services.Common\Services.Common.csproj" />
+    <ProjectReference Include="..\..\Common\Service.Common.Presentation\Service.Common.Presentation.csproj" />
     <ProjectReference Include="..\NotificationManagement.Application\NotificationManagement.Application.csproj" />
     <ProjectReference Include="..\NotificationManagement.Infrastructure.Persistence\NotificationManagement.Infrastructure.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 

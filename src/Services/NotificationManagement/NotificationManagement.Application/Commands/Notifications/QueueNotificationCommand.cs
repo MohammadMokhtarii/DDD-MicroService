@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using Services.Common;
 
 namespace NotificationManagement.Application.Commands;
 
-public record QueueNotificationCommand : IRequest<bool>
+public record QueueNotificationCommand : IRequest<IActionResponse>
 {
     public int NotificationTypeId { get; init; }
     public string[] Receivers { get; init; }

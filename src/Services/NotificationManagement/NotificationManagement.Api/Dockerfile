@@ -6,7 +6,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /src
 
-COPY ["/src/Services/NotificationManagement/NotificationManagement.Api/NotificationManagement.Api.csproj", "Services/NotificationManagement/NotificationManagement.Api/"]
+COPY ["Services/NotificationManagement/NotificationManagement.Api/NotificationManagement.Api.csproj", "Services/NotificationManagement/NotificationManagement.Api/"]
 RUN dotnet restore "Services/NotificationManagement/NotificationManagement.Api/NotificationManagement.Api.csproj"
 
 COPY . .

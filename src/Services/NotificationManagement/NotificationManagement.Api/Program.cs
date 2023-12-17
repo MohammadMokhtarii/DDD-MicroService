@@ -1,3 +1,4 @@
+using NotificationManagement.Api.Core;
 using NotificationManagement.Application;
 using NotificationManagement.Infrastructure;
 using Services.Common;
@@ -9,7 +10,8 @@ builder.AddServiceDefaults();
 builder.Services.AddControllers();
 
 builder.Services.AddApplicationServices()
-                .AddInfrastructureServices(builder.Configuration);
+                .AddInfrastructureServices(builder.Configuration)
+                .AddPresentaionServices(builder.Configuration);
 
 #endregion
 
