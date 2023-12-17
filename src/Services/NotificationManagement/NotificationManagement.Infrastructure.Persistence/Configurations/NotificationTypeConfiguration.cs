@@ -10,7 +10,7 @@ internal class NotificationTypeConfiguration : IEntityTypeConfiguration<Notifica
 {
     public void Configure(EntityTypeBuilder<NotificationType> configuration)
     {
-        configuration.ToTable("NotificationTypes", NotificationManagementContext.DEFAULT_SCHEMA);
+        configuration.ToTable("NotificationTypes", ApplicationDbContext.DEFAULT_SCHEMA);
 
         configuration.HasKey(e => e.Id);
 

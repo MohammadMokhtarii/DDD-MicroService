@@ -9,7 +9,7 @@ using NotificationManagement.Domain.Entities.NotificationAggregate;
 using NotificationManagement.Infrastructure.Persistence.Configurations;
 
 namespace NotificationManagement.Infrastructure.Persistence.Context;
-public class NotificationManagementContext : DbContext
+public class ApplicationDbContext : DbContext
 {
     public const string DEFAULT_SCHEMA = "NotificationManagement";
 
@@ -23,7 +23,7 @@ public class NotificationManagementContext : DbContext
     private IDbContextTransaction _currentTransaction;
     public bool HasActiveTransaction => _currentTransaction != null;
 
-    public NotificationManagementContext(DbContextOptions<NotificationManagementContext> options) : base(options) { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

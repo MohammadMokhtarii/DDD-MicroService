@@ -8,12 +8,12 @@ namespace NotificationManagement.Infrastructure.Mediator;
 public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly ILogger<TransactionBehavior<TRequest, TResponse>> _logger;
-    private readonly NotificationManagementContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
-    public TransactionBehavior(NotificationManagementContext dbContext,
+    public TransactionBehavior(ApplicationDbContext dbContext,
         ILogger<TransactionBehavior<TRequest, TResponse>> logger)
     {
-        ArgumentException.ThrowIfNullOrEmpty(nameof(NotificationManagementContext));
+        ArgumentException.ThrowIfNullOrEmpty(nameof(ApplicationDbContext));
         ArgumentException.ThrowIfNullOrEmpty(nameof(ILogger));
 
         _dbContext = dbContext;

@@ -11,7 +11,7 @@ using NotificationManagement.Infrastructure.Persistence.Context;
 
 namespace NotificationManagement.Infrastructure.Migrations
 {
-    [DbContext(typeof(NotificationManagementContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20231215110339_Initial")]
     partial class Initial
     {

@@ -10,14 +10,14 @@ internal class NotificationConfiguration : IEntityTypeConfiguration<Notification
 {
     public void Configure(EntityTypeBuilder<Notification> configuration)
     {
-        configuration.ToTable("Notifications", NotificationManagementContext.DEFAULT_SCHEMA);
+        configuration.ToTable("Notifications", ApplicationDbContext.DEFAULT_SCHEMA);
 
         configuration.HasKey(e => e.Id);
 
         configuration.Ignore(e => e.DomainEvents);
 
         configuration.Property(e => e.Id)
-                     .UseHiLo("notificationseq", NotificationManagementContext.DEFAULT_SCHEMA);
+                     .UseHiLo("notificationseq", ApplicationDbContext.DEFAULT_SCHEMA);
 
         configuration.Property(e => e.Receiver)
                      .HasMaxLength(50)

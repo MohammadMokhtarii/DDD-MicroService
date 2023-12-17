@@ -24,7 +24,7 @@ public static class ConfigureService
         services.AddScoped<IUnitofWork, UnitofWork>();
 
         var dbConnectionString = configuration.GetRequiredConnectionString("Application");
-        services.AddDbContext<NotificationManagementContext>((IServiceProvider serviceProvider, DbContextOptionsBuilder options) =>
+        services.AddDbContext<ApplicationDbContext>((IServiceProvider serviceProvider, DbContextOptionsBuilder options) =>
         {
             options.UseSqlServer(dbConnectionString, sqlOptions =>
             {
@@ -34,7 +34,7 @@ public static class ConfigureService
 
         var hcBuilder = services.AddHealthChecks();
 
-        hcBuilder.AddSqlServer(_ => dbConnectionString, name: "NotificationManagementDB-check", tags: new string[] { "ready" });
+        hcBuilder.AddSqlServer(_ => dbConnectionString, name: "ApplicationDB-check", tags: new string[] { "ready" });
 
         return services;
     }

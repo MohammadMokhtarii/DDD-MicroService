@@ -10,7 +10,7 @@ using NotificationManagement.Infrastructure.Persistence.Context;
 
 namespace NotificationManagement.Infrastructure.Migrations
 {
-    [DbContext(typeof(NotificationManagementContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class NotificationManagementContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

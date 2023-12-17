@@ -9,7 +9,7 @@ internal class NotificationAcitvityConfiguration : IEntityTypeConfiguration<Noti
 {
     public void Configure(EntityTypeBuilder<NotificationAcitvity> configuration)
     {
-        configuration.ToTable("NotificationAcitvities", NotificationManagementContext.DEFAULT_SCHEMA);
+        configuration.ToTable("NotificationAcitvities", ApplicationDbContext.DEFAULT_SCHEMA);
 
         configuration.HasKey(e => e.Id);
 

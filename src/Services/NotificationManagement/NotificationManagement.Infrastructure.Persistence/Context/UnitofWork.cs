@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Infrastructure.Mediator;
 
 namespace NotificationManagement.Infrastructure.Persistence.Context;
 public partial class UnitofWork : IUnitofWork
 {
-    private readonly NotificationManagementContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
     private readonly IMediator _mediator;
-    public UnitofWork(NotificationManagementContext dbContext, IMediator mediator)
+    public UnitofWork(ApplicationDbContext dbContext, IMediator mediator)
     {
         _dbContext = dbContext;
         _mediator = mediator;

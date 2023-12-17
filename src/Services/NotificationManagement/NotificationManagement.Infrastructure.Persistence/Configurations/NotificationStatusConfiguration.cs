@@ -10,7 +10,7 @@ internal class NotificationStatusConfiguration : IEntityTypeConfiguration<Notifi
 {
     public void Configure(EntityTypeBuilder<NotificationStatus> configuration)
     {
-        configuration.ToTable("NotificationStatuses", NotificationManagementContext.DEFAULT_SCHEMA);
+        configuration.ToTable("NotificationStatuses", ApplicationDbContext.DEFAULT_SCHEMA);
 
         configuration.HasKey(e => e.Id);
 

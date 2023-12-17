@@ -9,7 +9,7 @@ internal class NotificationPriorityConfiguration : IEntityTypeConfiguration<Noti
 {
     public void Configure(EntityTypeBuilder<NotificationPriority> configuration)
     {
-        configuration.ToTable("NotificationPriorities", NotificationManagementContext.DEFAULT_SCHEMA);
+        configuration.ToTable("NotificationPriorities", ApplicationDbContext.DEFAULT_SCHEMA);
 
         configuration.HasKey(e => e.Id);
 

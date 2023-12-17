@@ -8,8 +8,8 @@ using NotificationManagement.Infrastructure.Persistence.Context;
 namespace NotificationManagement.Infrastructure.Persistence.Repositories;
 public class NotificationRepository : INotificationRepository
 {
-    private readonly NotificationManagementContext _context;
-    public NotificationRepository(NotificationManagementContext context)
+    private readonly ApplicationDbContext _context;
+    public NotificationRepository(ApplicationDbContext context)
     {
         ArgumentNullException.ThrowIfNull(nameof(context));
         _context = context;
