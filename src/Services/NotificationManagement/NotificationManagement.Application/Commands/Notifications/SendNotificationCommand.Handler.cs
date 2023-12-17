@@ -4,7 +4,7 @@ using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
 using Services.Common;
 
-namespace NotificationManagement.Application.Commands.Notifications;
+namespace NotificationManagement.Application.Commands;
 
 public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCommand, IActionResponse<string>>
 {

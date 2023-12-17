@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using NotificationManagement.Application.Commands.Notifications;
+using NotificationManagement.Application.Validations;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
 
-namespace NotificationManagement.Application.Validations.Notifications;
+namespace NotificationManagement.Application.Commands;
 
 internal class SendNotificationCommandValidator : AbstractValidator<SendNotificationCommand>
 {

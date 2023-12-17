@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Services.Common;
 
-namespace NotificationManagement.Application.Commands.Notifications;
+namespace NotificationManagement.Application.Commands;
 
 public record SendNotificationCommand : IRequest<IActionResponse<string>>
 {

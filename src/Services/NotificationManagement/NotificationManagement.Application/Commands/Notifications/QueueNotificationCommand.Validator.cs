@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using NotificationManagement.Application.Commands;
+using NotificationManagement.Application.Validations;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
 
-namespace NotificationManagement.Application.Validations.Notifications;
+namespace NotificationManagement.Application.Commands;
 
 internal class QueueNotificationCommandValidator : AbstractValidator<QueueNotificationCommand>
 {
@@ -14,7 +14,7 @@ internal class QueueNotificationCommandValidator : AbstractValidator<QueueNotifi
             RuleFor(x => x.Message).NotEmpty().WithMessage("Receiver cant be empty")
                                    .MaximumLength(50).WithMessage("Message cant be more than 50 character");
         });
-                                
+
 
         RuleFor(x => x.Message).NotEmpty().WithMessage("Message cant be empty")
                                 .MaximumLength(500).WithMessage("Message cant be more than 500 character");
