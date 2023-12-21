@@ -2,6 +2,7 @@
 using System.Reflection;
 using FluentValidation;
 using NotificationManagement.Application.Behaviors;
+using Service.Common.Presentation;
 
 namespace NotificationManagement.Application;
 
@@ -16,6 +17,7 @@ public static class ConfigureService
             configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
             configuration.AddOpenBehavior(typeof(ValidatorBehavior<,>));
         });
+        services.RegisterServices(Assembly.GetExecutingAssembly());
         return services;
     }
 }

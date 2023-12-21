@@ -1,20 +1,15 @@
 ﻿using MediatR;
-using NotificationManagement.Application.Adapters;
+using NotificationManagement.Application.Factories.Notifications.Abstractions;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
-using Services.Common;
 
 namespace NotificationManagement.Application.Commands;
 
-public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCommand, IActionResponse<string>>
+public class SendNotificationCommandHandler(IUnitofWork uow, INotificationFactory notificationFactory) : IRequestHandler<SendNotificationCommand, IActionResponse<string>>
 {
-    private readonly IUnitofWork _uow;
-    private readonly ISmsAdapter _smsAdapter;
-    public SendNotificationCommandHandler(IUnitofWork uow, ISmsAdapter smsAdapter)
-    {
-        _uow = uow;
-        _smsAdapter = smsAdapter;
-    }
+    private readonly IUnitofWork _uow = uow;
+    private readonly INotificationFactory _notificationFactory = notificationFactory;
+
 
     public async Task<IActionResponse<string>> Handle(SendNotificationCommand request, CancellationToken cancellationToken)
     {
@@ -22,9 +17,10 @@ public class SendNotificationCommandHandler : IRequestHandler<SendNotificationCo
 
         _uow.NotificationRepo.Add(notification);
 
-        var smsResult = await _smsAdapter.SendAsync(notification.Receiver, notification.Message);
-        if (!string.IsNullOrEmpty(smsResult))
-            notification.ChangeStatus(NotificationStatus.Successful.Id, smsResult);
+        var notificationFactory = await _notificationFactory.GetInstance(notification.NotificationType)
+                                                            .ExecuteAsync([notification.Receiver], notification.Message, cancellationToken);
+        if (notificationFactory.IsSuccess)
+            notification.ChangeStatus(NotificationStatus.Successful.Id, notificationFactory.Data);
 
         var dbResult = await _uow.SaveChangesAsync(cancellationToken);
         if (!dbResult)

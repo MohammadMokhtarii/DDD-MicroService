@@ -1,14 +1,12 @@
 ﻿using MediatR;
 using NotificationManagement.Domain.Contracts;
 using NotificationManagement.Domain.Entities.NotificationAggregate;
-using Services.Common;
 
 namespace NotificationManagement.Application.Commands;
 
-public class QueueNotificationCommandHandler : IRequestHandler<QueueNotificationCommand, IActionResponse>
+public class QueueNotificationCommandHandler(IUnitofWork uow) : IRequestHandler<QueueNotificationCommand, IActionResponse>
 {
-    private readonly IUnitofWork _uow;
-    public QueueNotificationCommandHandler(IUnitofWork uow) => _uow = uow;
+    private readonly IUnitofWork _uow = uow;
 
     public async Task<IActionResponse> Handle(QueueNotificationCommand request, CancellationToken cancellationToken)
     {

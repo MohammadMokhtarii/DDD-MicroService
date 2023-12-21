@@ -1,18 +1,11 @@
 ﻿using MediatR;
-using Services.Common;
 
 namespace NotificationManagement.Application.Commands;
 
-public record SendNotificationCommand : IRequest<IActionResponse<string>>
+public record SendNotificationCommand(int notificationTypeId, string receiver, string message) : IRequest<IActionResponse<string>>
 {
-    public int NotificationTypeId { get; init; }
-    public string Receiver { get; init; }
-    public string Message { get; init; }
+    public int NotificationTypeId { get; init; } = notificationTypeId;
+    public string Receiver { get; init; } = receiver;
+    public string Message { get; init; } = message;
 
-    public SendNotificationCommand(int notificationTypeId, string receiver, string message)
-    {
-        NotificationTypeId = notificationTypeId;
-        Receiver = receiver;
-        Message = message;
-    }
 }

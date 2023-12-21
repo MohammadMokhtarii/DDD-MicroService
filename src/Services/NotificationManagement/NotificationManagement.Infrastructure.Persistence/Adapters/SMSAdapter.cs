@@ -9,12 +9,12 @@ namespace NotificationManagement.Infrastructure.Adapters;
 [ScopedInjection]
 public class SmsAdapter : ISmsAdapter
 {
-    public Task<string> SendAsync(string receiver, string message)
+    public Task<IActionResponse<string>> SendAsync(string receiver, string message)
     {
         throw new NotImplementedException();
     }
 
-    public Task<string> SendBulkAsync(string[] receiver, string message)
+    public Task<IActionResponse<string>> SendBulkAsync(string[] receiver, string message)
     {
         throw new NotImplementedException();
     }
