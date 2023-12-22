@@ -8,6 +8,7 @@ namespace NotificationManagement.Domain.Entities.NotificationAggregate;
 public class NotificationAcitvity : Entity
 {
     private int _notificationId;
+    public Notification Notification { get; private set; }
 
     private int _notificationStatusId;
     public NotificationStatus NotificationStatus { get; private set; }

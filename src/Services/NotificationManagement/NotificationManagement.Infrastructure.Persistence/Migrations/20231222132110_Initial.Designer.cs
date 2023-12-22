@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NotificationManagement.Infrastructure.Persistence.Context;
 
@@ -11,9 +12,11 @@ using NotificationManagement.Infrastructure.Persistence.Context;
 namespace NotificationManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class NotificationManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20231222132110_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,15 +40,6 @@ namespace NotificationManagement.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
-
-                    b.Property<int?>("NotificationPriorityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NotificationStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NotificationTypeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Receiver")
                         .IsRequired()
@@ -74,23 +68,13 @@ namespace NotificationManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NotificationPriorityId");
+                    b.HasIndex("_notificationPriorityId");
 
-                    b.HasIndex("NotificationStatusId");
+                    b.HasIndex("_notificationStatusId");
 
-                    b.HasIndex("NotificationTypeId");
+                    b.HasIndex("_notificationTypeId");
 
-                    b.ToTable("Notifications", "NotificationManagement", t =>
-                        {
-                            t.Property("NotificationPriorityId")
-                                .HasColumnName("NotificationPriorityId1");
-
-                            t.Property("NotificationStatusId")
-                                .HasColumnName("NotificationStatusId1");
-
-                            t.Property("NotificationTypeId")
-                                .HasColumnName("NotificationTypeId1");
-                        });
+                    b.ToTable("Notifications", "NotificationManagement");
                 });
 
             modelBuilder.Entity("NotificationManagement.Domain.Entities.NotificationAggregate.NotificationAcitvity", b =>
@@ -102,9 +86,6 @@ namespace NotificationManagement.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("NotificationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NotificationStatusId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("_createdOn")
@@ -129,15 +110,14 @@ namespace NotificationManagement.Infrastructure.Migrations
 
                     b.HasIndex("NotificationId");
 
-                    b.HasIndex("NotificationStatusId");
+                    b.HasIndex("_notificationId");
+
+                    b.HasIndex("_notificationStatusId");
 
                     b.ToTable("NotificationAcitvities", "NotificationManagement", t =>
                         {
                             t.Property("NotificationId")
                                 .HasColumnName("NotificationId1");
-
-                            t.Property("NotificationStatusId")
-                                .HasColumnName("NotificationStatusId1");
                         });
                 });
 
@@ -193,15 +173,21 @@ namespace NotificationManagement.Infrastructure.Migrations
                 {
                     b.HasOne("NotificationManagement.Domain.Entities.NotificationAggregate.NotificationPriority", "NotificationPriority")
                         .WithMany()
-                        .HasForeignKey("NotificationPriorityId");
+                        .HasForeignKey("_notificationPriorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NotificationManagement.Domain.Entities.NotificationAggregate.NotificationStatus", "NotificationStatus")
                         .WithMany()
-                        .HasForeignKey("NotificationStatusId");
+                        .HasForeignKey("_notificationStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NotificationManagement.Domain.Entities.NotificationAggregate.NotificationType", "NotificationType")
                         .WithMany()
-                        .HasForeignKey("NotificationTypeId");
+                        .HasForeignKey("_notificationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("NotificationPriority");
 
@@ -216,9 +202,19 @@ namespace NotificationManagement.Infrastructure.Migrations
                         .WithMany("NotificationAcitvities")
                         .HasForeignKey("NotificationId");
 
+                    b.HasOne("NotificationManagement.Domain.Entities.NotificationAggregate.Notification", "Notification")
+                        .WithMany()
+                        .HasForeignKey("_notificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("NotificationManagement.Domain.Entities.NotificationAggregate.NotificationStatus", "NotificationStatus")
                         .WithMany()
-                        .HasForeignKey("NotificationStatusId");
+                        .HasForeignKey("_notificationStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Notification");
 
                     b.Navigation("NotificationStatus");
                 });

@@ -58,5 +58,18 @@ internal class NotificationConfiguration : IEntityTypeConfiguration<Notification
 
         var navigation = configuration.Metadata.FindNavigation(nameof(Notification.NotificationAcitvities));
         navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
+
+        configuration.HasOne(e => e.NotificationType)
+                     .WithMany()
+                     .HasForeignKey("_notificationTypeId");
+
+        configuration.HasOne(e => e.NotificationStatus)
+                     .WithMany()
+                     .HasForeignKey("_notificationStatusId");
+
+        configuration.HasOne(e => e.NotificationPriority)
+                     .WithMany()
+                     .HasForeignKey("_notificationPriorityId");
     }
 }

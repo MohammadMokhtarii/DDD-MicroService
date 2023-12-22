@@ -39,5 +39,13 @@ internal class NotificationAcitvityConfiguration : IEntityTypeConfiguration<Noti
                      .HasColumnName("NotificationStatusId")
                      .IsRequired();
 
+        configuration.HasOne(e => e.NotificationStatus)
+                     .WithMany()
+                     .HasForeignKey("_notificationStatusId");
+
+        configuration.HasOne(e => e.Notification)
+                     .WithMany()
+                     .HasForeignKey("_notificationId");
+
     }
 }

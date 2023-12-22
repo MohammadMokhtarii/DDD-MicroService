@@ -66,12 +66,9 @@ namespace NotificationManagement.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     Receiver = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Message = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    NotificationTypeId1 = table.Column<int>(type: "int", nullable: true),
-                    NotificationPriorityId1 = table.Column<int>(type: "int", nullable: true),
-                    NotificationStatusId1 = table.Column<int>(type: "int", nullable: true),
+                    NotificationTypeId = table.Column<int>(type: "int", nullable: false),
                     NotificationPriorityId = table.Column<int>(type: "int", nullable: false),
                     NotificationStatusId = table.Column<int>(type: "int", nullable: false),
-                    NotificationTypeId = table.Column<int>(type: "int", nullable: false),
                     Read = table.Column<bool>(type: "bit", nullable: false),
                     RetryCount = table.Column<int>(type: "int", nullable: false)
                 },
@@ -79,23 +76,26 @@ namespace NotificationManagement.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Notifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Notifications_NotificationPriorities_NotificationPriorityId1",
-                        column: x => x.NotificationPriorityId1,
+                        name: "FK_Notifications_NotificationPriorities_NotificationPriorityId",
+                        column: x => x.NotificationPriorityId,
                         principalSchema: "NotificationManagement",
                         principalTable: "NotificationPriorities",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notifications_NotificationStatuses_NotificationStatusId1",
-                        column: x => x.NotificationStatusId1,
+                        name: "FK_Notifications_NotificationStatuses_NotificationStatusId",
+                        column: x => x.NotificationStatusId,
                         principalSchema: "NotificationManagement",
                         principalTable: "NotificationStatuses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notifications_NotificationTypes_NotificationTypeId1",
-                        column: x => x.NotificationTypeId1,
+                        name: "FK_Notifications_NotificationTypes_NotificationTypeId",
+                        column: x => x.NotificationTypeId,
                         principalSchema: "NotificationManagement",
                         principalTable: "NotificationTypes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,22 +105,29 @@ namespace NotificationManagement.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NotificationStatusId1 = table.Column<int>(type: "int", nullable: true),
-                    NotificationId1 = table.Column<int>(type: "int", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NotificationId = table.Column<int>(type: "int", nullable: false),
                     NotificationStatusId = table.Column<int>(type: "int", nullable: false),
+                    NotificationId1 = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Response = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NotificationAcitvities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NotificationAcitvities_NotificationStatuses_NotificationStatusId1",
-                        column: x => x.NotificationStatusId1,
+                        name: "FK_NotificationAcitvities_NotificationStatuses_NotificationStatusId",
+                        column: x => x.NotificationStatusId,
                         principalSchema: "NotificationManagement",
                         principalTable: "NotificationStatuses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_NotificationAcitvities_Notifications_NotificationId",
+                        column: x => x.NotificationId,
+                        principalSchema: "NotificationManagement",
+                        principalTable: "Notifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_NotificationAcitvities_Notifications_NotificationId1",
                         column: x => x.NotificationId1,
@@ -130,34 +137,40 @@ namespace NotificationManagement.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_NotificationAcitvities_NotificationId",
+                schema: "NotificationManagement",
+                table: "NotificationAcitvities",
+                column: "NotificationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NotificationAcitvities_NotificationId1",
                 schema: "NotificationManagement",
                 table: "NotificationAcitvities",
                 column: "NotificationId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NotificationAcitvities_NotificationStatusId1",
+                name: "IX_NotificationAcitvities_NotificationStatusId",
                 schema: "NotificationManagement",
                 table: "NotificationAcitvities",
-                column: "NotificationStatusId1");
+                column: "NotificationStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notifications_NotificationPriorityId1",
+                name: "IX_Notifications_NotificationPriorityId",
                 schema: "NotificationManagement",
                 table: "Notifications",
-                column: "NotificationPriorityId1");
+                column: "NotificationPriorityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notifications_NotificationStatusId1",
+                name: "IX_Notifications_NotificationStatusId",
                 schema: "NotificationManagement",
                 table: "Notifications",
-                column: "NotificationStatusId1");
+                column: "NotificationStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notifications_NotificationTypeId1",
+                name: "IX_Notifications_NotificationTypeId",
                 schema: "NotificationManagement",
                 table: "Notifications",
-                column: "NotificationTypeId1");
+                column: "NotificationTypeId");
         }
 
         /// <inheritdoc />
